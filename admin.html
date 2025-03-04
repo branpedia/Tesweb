@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin - Saran & Kritik</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h2>Daftar Saran & Kritik</h2>
+        <ul id="feedbackList"></ul>
+    </div>
+
+    <script>
+        async function loadFeedback() {
+            const response = await fetch('/feedback');
+            const data = await response.json();
+            const list = document.getElementById('feedbackList');
+            list.innerHTML = data.map(f => `<li>${f.text}</li>`).join('');
+        }
+        loadFeedback();
+    </script>
+</body>
+</html>
