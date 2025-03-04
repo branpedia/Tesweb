@@ -1,44 +1,33 @@
 const express = require('express');
-const multer = require('multer');
-const path = require('path');
+const fs = require('fs');
 
 const app = express();
 const PORT = 3000;
+const FILE_PATH = "feedback.json";
 
 app.use(express.static('public'));
+app.use(express.json());
 
-// Konfigurasi penyimpanan file
-const storage = multer.diskStorage({
-    destination: './uploads/',
-    filename: (req, file, cb) => {
-        cb(null, Date.now() + path.extname(file.originalname));
+// API Simpan Saran
+app.post('/submit-feedback', (req, res) => {
+    const { text } = req.body;
+    if (!text) return res.status(400).json({ message: "Masukan tidak boleh kosong!" });
+
+    let feedbackList = [];
+    if (fs.existsSync(FILE_PATH)) {
+        feedbackList = JSON.parse(fs.readFileSync(FILE_PATH));
     }
+
+    feedbackList.push({ text, date: new Date().toISOString() });
+    fs.writeFileSync(FILE_PATH, JSON.stringify(feedbackList, null, 2));
+
+    res.json({ message: "Terima kasih atas saran & kritik Anda!" });
 });
 
-const upload = multer({ 
-    storage, 
-    limits: { fileSize: 20 * 1024 * 1024 }, // Maksimal 20MB
-    fileFilter: (req, file, cb) => {
-        if (file.mimetype.startsWith("image/") || file.mimetype.startsWith("video/")) {
-            cb(null, true);
-        } else {
-            cb(new Error("Hanya gambar dan video yang diperbolehkan!"));
-        }
-    }
+// API Tampilkan Saran
+app.get('/feedback', (req, res) => {
+    if (!fs.existsSync(FILE_PATH)) return res.json([]);
+    res.json(JSON.parse(fs.readFileSync(FILE_PATH)));
 });
 
-// API Upload
-app.post('/upload', upload.single('file'), (req, res) => {
-    if (!req.file) {
-        return res.status(400).json({ error: "File tidak valid" });
-    }
-    const fileUrl = `${req.protocol}://${req.get('host')}/uploads/${req.file.filename}`;
-    res.json({ url: fileUrl });
-});
-
-// Menyajikan file yang diunggah
-app.use('/uploads', express.static('uploads'));
-
-app.listen(PORT, () => {
-    console.log(`Server berjalan di http://localhost:${PORT}`);
-});
+app.listen(PORT, () => console.log(`Server berjalan di http://localhost:${PORT}`));
