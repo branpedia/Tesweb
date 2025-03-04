@@ -1,17 +1,12 @@
-async function sendFeedback() {
-    const text = document.getElementById("feedbackText").value.trim();
-    if (!text) {
-        alert("Silakan isi saran atau kritik!");
-        return;
-    }
+document.getElementById("feedbackForm").addEventListener("submit", function(event) {
+    event.preventDefault();
+    
+    const name = document.getElementById("name").value;
+    const email = document.getElementById("email").value;
+    const message = document.getElementById("message").value;
 
-    const response = await fetch("/submit-feedback", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ text })
-    });
+    console.log("Saran Dikirim:", { name, email, message });
 
-    const result = await response.json();
-    document.getElementById("status").innerText = result.message;
-    document.getElementById("feedbackText").value = "";
-}
+    // Reset Form
+    document.getElementById("feedbackForm").reset();
+});
