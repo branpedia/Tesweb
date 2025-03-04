@@ -5,21 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin - Saran & Kritik</title>
     <link rel="stylesheet" href="style.css">
+    <script defer src="admin.js"></script>
 </head>
 <body>
-    <div class="container">
-        <h2>Daftar Saran & Kritik</h2>
-        <ul id="feedbackList"></ul>
-    </div>
+    <header class="header">
+        <h1>Dashboard Admin</h1>
+    </header>
 
-    <script>
-        async function loadFeedback() {
-            const response = await fetch('/feedback');
-            const data = await response.json();
-            const list = document.getElementById('feedbackList');
-            list.innerHTML = data.map(f => `<li>${f.text}</li>`).join('');
-        }
-        loadFeedback();
-    </script>
+    <section id="feedbackList"></section>
 </body>
 </html>
