@@ -5,15 +5,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Saran & Kritik</title>
     <link rel="stylesheet" href="style.css">
+    <script defer src="script.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
 </head>
 <body>
-    <div class="container">
-        <h2>Saran & Kritik</h2>
-        <textarea id="feedbackText" placeholder="Masukkan saran atau kritik Anda..."></textarea>
-        <button onclick="sendFeedback()">Kirim</button>
-        <p id="status"></p>
-    </div>
+    <header class="header">
+        <h1>Saran & Kritik</h1>
+    </header>
 
-    <script src="script.js"></script>
+    <section class="form-container">
+        <h2>Kirim Saran atau Kritik</h2>
+        <form id="feedbackForm">
+            <input type="text" id="name" placeholder="Nama" required>
+            <input type="email" id="email" placeholder="Email" required>
+            <textarea id="message" placeholder="Pesan" required></textarea>
+            <button type="submit">Kirim</button>
+        </form>
+    </section>
+
+    <script>
+        gsap.from(".header", { opacity: 0, y: -50, duration: 1 });
+        gsap.from(".form-container", { opacity: 0, scale: 0.8, duration: 1.2, delay: 0.5 });
+    </script>
 </body>
-</html>
+</html>tidak 
