@@ -1,12 +1,10 @@
 {
-  "name": "upload-site",
+  "name": "saran-kritik",
   "version": "1.0.0",
-  "description": "Simple Image & Video Upload Site",
+  "description": "Website Saran & Kritik",
   "main": "server.js",
   "dependencies": {
-    "express": "^4.18.2",
-    "multer": "^1.4.5",
-    "path": "^0.12.7"
+    "express": "^4.18.2"
   },
   "scripts": {
     "start": "node server.js"
