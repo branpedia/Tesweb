@@ -1,12 +1,23 @@
-document.getElementById("feedbackForm").addEventListener("submit", function(event) {
-    event.preventDefault();
-    
-    const name = document.getElementById("name").value;
-    const email = document.getElementById("email").value;
-    const message = document.getElementById("message").value;
+document.getElementById('feedbackForm').addEventListener('submit', function (e) {
+    e.preventDefault();
 
-    console.log("Saran Dikirim:", { name, email, message });
+    const formData = new FormData(this);
 
-    // Reset Form
-    document.getElementById("feedbackForm").reset();
+    fetch('submit.php', {
+        method: 'POST',
+        body: formData
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            document.getElementById('message').textContent = 'Saran berhasil dikirim!';
+            document.getElementById('feedbackForm').reset();
+        } else {
+            document.getElementById('message').textContent = 'Terjadi kesalahan. Silakan coba lagi.';
+        }
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        document.getElementById('message').textContent = 'Terjadi kesalahan. Silakan coba lagi.';
+    });
 });
