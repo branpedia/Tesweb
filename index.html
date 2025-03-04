@@ -1,31 +1,37 @@
 <!DOCTYPE html>
-<html lang="id">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Saran & Kritik</title>
     <link rel="stylesheet" href="style.css">
-    <script defer src="script.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
 </head>
 <body>
-    <header class="header">
+    <div class="container">
         <h1>Saran & Kritik</h1>
-    </header>
-
-    <section class="form-container">
-        <h2>Kirim Saran atau Kritik</h2>
         <form id="feedbackForm">
-            <input type="text" id="name" placeholder="Nama" required>
-            <input type="email" id="email" placeholder="Email" required>
-            <textarea id="message" placeholder="Pesan" required></textarea>
+            <label for="nama">Nama:</label>
+            <input type="text" id="nama" name="nama" required>
+
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+
+            <label for="pesan">Pesan:</label>
+            <textarea id="pesan" name="pesan" rows="5" required></textarea>
+
+            <label for="rating">Rating:</label>
+            <select id="rating" name="rating" required>
+                <option value="1">1 - Buruk</option>
+                <option value="2">2 - Kurang Baik</option>
+                <option value="3">3 - Cukup Baik</option>
+                <option value="4">4 - Baik</option>
+                <option value="5">5 - Sangat Baik</option>
+            </select>
+
             <button type="submit">Kirim</button>
         </form>
-    </section>
-
-    <script>
-        gsap.from(".header", { opacity: 0, y: -50, duration: 1 });
-        gsap.from(".form-container", { opacity: 0, scale: 0.8, duration: 1.2, delay: 0.5 });
-    </script>
+        <p id="message"></p>
+    </div>
+    <script src="script.js"></script>
 </body>
-</html>tidak 
+</html>
