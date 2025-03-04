@@ -3,7 +3,7 @@ body {
     text-align: center;
 }
 
-.upload-container {
+.container {
     width: 300px;
     margin: 50px auto;
     padding: 20px;
@@ -11,7 +11,13 @@ body {
     border-radius: 5px;
 }
 
-#preview img, #preview video {
-    max-width: 100%;
+textarea {
+    width: 100%;
+    height: 100px;
     margin-top: 10px;
+}
+
+button {
+    margin-top: 10px;
+    padding: 10px;
 }
