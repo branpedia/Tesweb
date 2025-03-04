@@ -1,17 +1,29 @@
 <!DOCTYPE html>
-<html lang="id">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin - Saran & Kritik</title>
+    <title>Admin Panel</title>
     <link rel="stylesheet" href="style.css">
-    <script defer src="admin.js"></script>
 </head>
 <body>
-    <header class="header">
-        <h1>Dashboard Admin</h1>
-    </header>
-
-    <section id="feedbackList"></section>
+    <div class="container">
+        <h1>Admin Panel</h1>
+        <table id="feedbackTable">
+            <thead>
+                <tr>
+                    <th>Nama</th>
+                    <th>Email</th>
+                    <th>Pesan</th>
+                    <th>Rating</th>
+                    <th>Aksi</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Data akan dimuat dari PHP -->
+            </tbody>
+        </table>
+    </div>
+    <script src="admin.js"></script>
 </body>
 </html>
